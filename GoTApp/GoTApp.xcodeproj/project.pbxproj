@@ -14,6 +14,7 @@
 		B37ADAFE2A6F3CD000AC8587 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFD2A6F3CD000AC8587 /* ViewModel.swift */; };
 		B37ADB002A6F3D0700AC8587 /* HouseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */; };
 		B37ADB022A6F3F0C00AC8587 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB012A6F3F0C00AC8587 /* DetailScreen.swift */; };
+		B37ADB052A7092C200AC8587 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB042A7092C200AC8587 /* SplashScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		B37ADAFD2A6F3CD000AC8587 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseResponse.swift; sourceTree = "<group>"; };
 		B37ADB012A6F3F0C00AC8587 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
+		B37ADB042A7092C200AC8587 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		B37ADAF42A6F3C0100AC8587 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B37ADB032A7092AC00AC8587 /* Splash */,
 				B37ADAF52A6F3C0600AC8587 /* Home */,
 				B37ADAF62A6F3C1200AC8587 /* Detail */,
 			);
@@ -98,6 +101,14 @@
 				B37ADB012A6F3F0C00AC8587 /* DetailScreen.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		B37ADB032A7092AC00AC8587 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADB042A7092C200AC8587 /* SplashScreen.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B37ADB052A7092C200AC8587 /* SplashScreen.swift in Sources */,
 				B37ADB022A6F3F0C00AC8587 /* DetailScreen.swift in Sources */,
 				B379FA292A6F3406001B39E3 /* GoTAppApp.swift in Sources */,
 				B37ADAFE2A6F3CD000AC8587 /* ViewModel.swift in Sources */,

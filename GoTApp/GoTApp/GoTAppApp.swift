@@ -11,7 +11,7 @@ import SwiftUI
 struct GoTAppApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            SplashScreen()
         }
     }
 }

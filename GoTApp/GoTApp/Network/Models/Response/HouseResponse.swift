@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 struct HouseResponse: Hashable, Decodable, Identifiable {
     let id = UUID()
     let url: String // *

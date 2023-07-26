@@ -8,6 +8,7 @@
 import Foundation
 
 public enum Endpoint {
+    
     static let baseURL = "https://www.anapioficeandfire.com/api"
     
     enum Home: String {

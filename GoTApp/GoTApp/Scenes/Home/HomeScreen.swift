@@ -13,26 +13,21 @@ struct HomeScreen: View {
     
     var body: some View {
         NavigationView {
-            
             List(viewModel.houses) { house in
-                Button(action: {
-                    viewModel.selectedHouse = house
-                }) {
+                NavigationLink(destination: DetailScreen(house: house)) {
                     Text(house.name)
                 }
             }
-            .sheet(item: $viewModel.selectedHouse) { house in
-                DetailScreen(house: house)
-            }
-            .navigationTitle("Houses")
+
             .listStyle(GroupedListStyle())
-            Spacer()
-            .onAppear{
-                viewModel.fetchHouseList()
-            }
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            viewModel.fetchHouseList()
         }
     }
 }
+
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()

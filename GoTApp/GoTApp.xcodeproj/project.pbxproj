@@ -11,10 +11,13 @@
 		B379FA2D2A6F3407001B39E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B379FA2C2A6F3407001B39E3 /* Assets.xcassets */; };
 		B379FA302A6F3407001B39E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B379FA2F2A6F3407001B39E3 /* Preview Assets.xcassets */; };
 		B37ADAFC2A6F3C7B00AC8587 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFB2A6F3C7B00AC8587 /* HomeScreen.swift */; };
-		B37ADAFE2A6F3CD000AC8587 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFD2A6F3CD000AC8587 /* ViewModel.swift */; };
+		B37ADAFE2A6F3CD000AC8587 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFD2A6F3CD000AC8587 /* HomeScreenViewModel.swift */; };
 		B37ADB002A6F3D0700AC8587 /* HouseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */; };
 		B37ADB022A6F3F0C00AC8587 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB012A6F3F0C00AC8587 /* DetailScreen.swift */; };
 		B37ADB052A7092C200AC8587 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB042A7092C200AC8587 /* SplashScreen.swift */; };
+		B37ADB0B2A717D5F00AC8587 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0A2A717D5F00AC8587 /* NetworkManager.swift */; };
+		B37ADB0E2A717D8F00AC8587 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */; };
+		B37ADB102A717DD600AC8587 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0F2A717DD600AC8587 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +26,13 @@
 		B379FA2C2A6F3407001B39E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B379FA2F2A6F3407001B39E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B37ADAFB2A6F3C7B00AC8587 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		B37ADAFD2A6F3CD000AC8587 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B37ADAFD2A6F3CD000AC8587 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseResponse.swift; sourceTree = "<group>"; };
 		B37ADB012A6F3F0C00AC8587 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
 		B37ADB042A7092C200AC8587 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		B37ADB0A2A717D5F00AC8587 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		B37ADB0F2A717DD600AC8587 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		B379FA272A6F3406001B39E3 /* GoTApp */ = {
 			isa = PBXGroup;
 			children = (
+				B37ADB062A717D3000AC8587 /* Network */,
 				B37ADAF42A6F3C0100AC8587 /* Scenes */,
 				B379FA282A6F3406001B39E3 /* GoTAppApp.swift */,
 				B379FA2C2A6F3407001B39E3 /* Assets.xcassets */,
@@ -89,8 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B37ADAFB2A6F3C7B00AC8587 /* HomeScreen.swift */,
-				B37ADAFD2A6F3CD000AC8587 /* ViewModel.swift */,
-				B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */,
+				B37ADAFD2A6F3CD000AC8587 /* HomeScreenViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -109,6 +115,49 @@
 				B37ADB042A7092C200AC8587 /* SplashScreen.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		B37ADB062A717D3000AC8587 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADB092A717D4400AC8587 /* Helper */,
+				B37ADB082A717D3F00AC8587 /* Common */,
+				B37ADB072A717D3800AC8587 /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B37ADB072A717D3800AC8587 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADB0C2A717D6F00AC8587 /* Response */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B37ADB082A717D3F00AC8587 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADB0A2A717D5F00AC8587 /* NetworkManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B37ADB092A717D4400AC8587 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */,
+				B37ADB0F2A717DD600AC8587 /* Endpoint.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		B37ADB0C2A717D6F00AC8587 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +231,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B37ADB052A7092C200AC8587 /* SplashScreen.swift in Sources */,
+				B37ADB102A717DD600AC8587 /* Endpoint.swift in Sources */,
+				B37ADB0E2A717D8F00AC8587 /* NetworkError.swift in Sources */,
 				B37ADB022A6F3F0C00AC8587 /* DetailScreen.swift in Sources */,
 				B379FA292A6F3406001B39E3 /* GoTAppApp.swift in Sources */,
-				B37ADAFE2A6F3CD000AC8587 /* ViewModel.swift in Sources */,
+				B37ADB0B2A717D5F00AC8587 /* NetworkManager.swift in Sources */,
+				B37ADAFE2A6F3CD000AC8587 /* HomeScreenViewModel.swift in Sources */,
 				B37ADB002A6F3D0700AC8587 /* HouseResponse.swift in Sources */,
 				B37ADAFC2A6F3C7B00AC8587 /* HomeScreen.swift in Sources */,
 			);

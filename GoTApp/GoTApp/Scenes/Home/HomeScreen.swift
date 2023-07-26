@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     
-    @StateObject var viewModel = ViewModel()
+    @ObservedObject var viewModel = HomeScreenViewModel()
     
     var body: some View {
         NavigationView {
@@ -24,10 +24,12 @@ struct HomeScreen: View {
             .sheet(item: $viewModel.selectedHouse) { house in
                 DetailScreen(house: house)
             }
-        }
-        .navigationTitle("Houses")
-        .onAppear{
-            viewModel.fetchHouseList()
+            .navigationTitle("Houses")
+            .listStyle(GroupedListStyle())
+            Spacer()
+            .onAppear{
+                viewModel.fetchHouseList()
+            }
         }
     }
 }

@@ -15,17 +15,48 @@ struct DetailScreen: View {
         NavigationView {
             ZStack {
                 VStack {
-                    Spacer(minLength: 50)
-                    ZStack{
+                    VStack {
                         Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .center)
-                        Text(house.coatOfArms)
-                            .font(.title3)
-                            .multilineTextAlignment(.center)
-                            .frame(width: UIScreen.main.bounds.width - 40)
+                            .foregroundColor(.red)
+                            .frame(width: UIScreen.main.bounds.width, height: 400, alignment: .top)
+                        VStack {
+                            Text("Coat of Arms")
+                                .padding(.top, 100)
+                                .font(.title)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                            Text(house.coatOfArms)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                        }
+                        
+                        VStack {
+                            Text("Region of House")
+                                .padding(.top, 20)
+                                .font(.title)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40,height: 100)
+                            
+                            Text(house.region)
+                                .padding(.top, 20)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                        }
+                        VStack {
+                            Text("Over Lords")
+                                .padding(.top, 20)
+                                .font(.title)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40,height: 100)
+                            
+                            Text(house.region)
+                                .padding(.top, 20)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                        }
+
                     }
-                    ZStack{
+                    ZStack {
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 200, alignment: .center)
@@ -40,4 +71,6 @@ struct DetailScreen: View {
         }
         .navigationTitle(house.name)
     }
+    
+    
 }

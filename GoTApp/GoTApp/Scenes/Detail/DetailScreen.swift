@@ -15,24 +15,29 @@ struct DetailScreen: View {
         NavigationView {
             ZStack {
                 VStack {
+                    Spacer(minLength: 50)
                     ZStack{
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .center)
+                        Text(house.coatOfArms)
+                            .font(.title3)
+                            .multilineTextAlignment(.center)
+                            .frame(width: UIScreen.main.bounds.width - 40)
                     }
                     ZStack{
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 200, alignment: .center)
-                            .background(Color("GoTDarkGray"))
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom)
+                            )
                             .cornerRadius(10)
                     }
                 }
             }
-            .background(Color("GoTWhite"))
-            .frame(width: 375, height: 812)
+            .frame(width: UIScreen.main.bounds.width, height: 812)
         }
         .navigationTitle(house.name)
-        .background(Color("GoTDarkGray"))
     }
 }

@@ -13,7 +13,7 @@ protocol HomeScreenViewModelProtocol {
     func fetchHouseList()
 }
 
-class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
+final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     
     private let networkManager: NetworkManagerProtocol
     
@@ -30,6 +30,7 @@ class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
             case .success(let houses):
                 DispatchQueue.main.async {
                     self.houses = houses
+                    print(houses.first)
                 }
             case .failure(let error):
                 print(error)

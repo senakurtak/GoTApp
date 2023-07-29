@@ -12,5 +12,5 @@ struct HouseResponse: Hashable, Decodable, Identifiable {
     let name: String
     let region: String
     let coatOfArms: String
-    let overlord: String  
+    let overlord: String
 }

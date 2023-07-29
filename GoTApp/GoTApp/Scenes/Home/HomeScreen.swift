@@ -24,7 +24,7 @@ struct HomeScreen: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(viewModel.houses) { house in
-                        NavigationLink(destination: DetailScreen(house: house)) {
+                        NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
                             VStack(alignment: .leading) {
                                 Text(house.name)
                                     .font(.headline)

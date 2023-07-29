@@ -11,13 +11,14 @@ struct DetailScreen: View {
     
     let house: HouseResponse
     
+    @State var viewModel: DetailScreenViewModel
+
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
                     VStack {
                         Rectangle()
-                            .foregroundColor(.red)
                             .frame(width: UIScreen.main.bounds.width, height: 400, alignment: .top)
                         VStack {
                             Text("Coat of Arms")
@@ -54,6 +55,7 @@ struct DetailScreen: View {
                                 .multilineTextAlignment(.leading)
                                 .frame(width: UIScreen.main.bounds.width - 40, height: 100)
                         }
+                        
 
                     }
                     ZStack {
@@ -68,9 +70,11 @@ struct DetailScreen: View {
                 }
             }
             .frame(width: UIScreen.main.bounds.width, height: 812)
+            .onAppear {
+                viewModel.fetchOverlords()
+            }
         }
         .navigationTitle(house.name)
     }
-    
-    
+        
 }

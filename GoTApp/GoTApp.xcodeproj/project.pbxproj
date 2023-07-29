@@ -19,6 +19,7 @@
 		B37ADB0E2A717D8F00AC8587 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */; };
 		B37ADB102A717DD600AC8587 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0F2A717DD600AC8587 /* Endpoint.swift */; };
 		B37ADB142A73040300AC8587 /* DetailScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB132A73040300AC8587 /* DetailScreenViewModel.swift */; };
+		B3D6999C2A75467900F71165 /* OverlordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6999B2A75467900F71165 /* OverlordResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B37ADB0F2A717DD600AC8587 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		B37ADB132A73040300AC8587 /* DetailScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenViewModel.swift; sourceTree = "<group>"; };
+		B3D6999B2A75467900F71165 /* OverlordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlordResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */,
+				B3D6999B2A75467900F71165 /* OverlordResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				B37ADB0E2A717D8F00AC8587 /* NetworkError.swift in Sources */,
 				B37ADB022A6F3F0C00AC8587 /* DetailScreen.swift in Sources */,
 				B379FA292A6F3406001B39E3 /* GoTAppApp.swift in Sources */,
+				B3D6999C2A75467900F71165 /* OverlordResponse.swift in Sources */,
 				B37ADB0B2A717D5F00AC8587 /* NetworkManager.swift in Sources */,
 				B37ADAFE2A6F3CD000AC8587 /* HomeScreenViewModel.swift in Sources */,
 				B37ADB002A6F3D0700AC8587 /* HouseResponse.swift in Sources */,

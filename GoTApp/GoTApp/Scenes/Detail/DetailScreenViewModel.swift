@@ -9,7 +9,7 @@ import Foundation
 
 protocol DetailScreenViewModelProtocol {
     var house: HouseResponse { get }
-    func fetchOverlords()
+    func fetchOverlord()
 }
 
 final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtocol {
@@ -24,7 +24,7 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
         self.networkManager = networkManager
     }
 
-    func fetchOverlords() {
+    func fetchOverlord() {
         networkManager.fetchOverlord(url: house.overlord) { result in
             switch result {
             case .success(let overlord):

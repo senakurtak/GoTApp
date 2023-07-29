@@ -15,10 +15,11 @@ class NetworkManager: NetworkManagerProtocol {
     
     func fetchHouses(completion: @escaping (Result<[HouseResponse], NetworkError>) -> Void) {
         
-        guard let url = URL(string: Endpoint.Home.house.absoluteURL) else {
-            return
-        }
-
+        guard let url = URL(string: Endpoint.Home.house.absoluteURL) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             guard let data = data, error == nil else {

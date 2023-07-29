@@ -30,7 +30,6 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
             case .success(let overlord):
                 DispatchQueue.main.async {
                     self.overlord = overlord
-                    print(overlord)
                 }
             case .failure(let error):
                 print(error)

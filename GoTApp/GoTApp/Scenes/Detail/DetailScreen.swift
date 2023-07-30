@@ -12,7 +12,7 @@ struct DetailScreen: View {
     let house: HouseResponse
     
     @StateObject var viewModel: DetailScreenViewModel
-    var padding: CGFloat = 10
+    var padding: CGFloat = 20
     
     
     var body: some View {
@@ -21,48 +21,47 @@ struct DetailScreen: View {
                 VStack {
                     Text("Region")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .leading)
+                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
+
                     Text("\(house.region)")
                         .font(.system(size: 18, weight: .medium, design: .default))
-                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .leading)
+                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
                     if house.coatOfArms != "" {
                         Text("Coat of Arms")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
                         Text("\(house.coatOfArms)")
                             .font(.system(size: 18, weight: .medium, design: .default))
-                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
                     }
-                    Text("Overlord Info")
+                    Text("Overlord")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .leading)
+                        .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
                     
                     if let overlord = viewModel.overlord {
-                        Text("Name: \(overlord.name)")
+                        Text("\(overlord.name)")
                             .font(.system(size: 18, weight: .medium, design: .default))
-                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
+                            .padding(10)
                     } else {
                         Text("Loading Overlord Info...")
                             .font(.system(size: 18, weight: .medium, design: .default))
-                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
                     }
                     if !viewModel.characterNames.isEmpty {
                         Text("Sworn Members")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                        
-                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [GridItem(.fixed(50))], spacing: 16) {
                                 ForEach(viewModel.characterNames, id: \.self) { characterName in
                                     Text(characterName)
                                         .font(.system(size: 18, weight: .medium, design: .default))
                                         .foregroundColor(Color("GoTWhite"))
-                                    
                                 }
-                                .cornerRadius(8)
                                 .frame(width: 200, height: 250)
+                                .cornerRadius(8)
                                 .background(Color("GoTDarkGray"))
-                                
                             }
                             .padding(.horizontal, padding)
                         }
@@ -72,7 +71,7 @@ struct DetailScreen: View {
                             .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 300)
+                .frame(width: UIScreen.main.bounds.width - padding, height: UIScreen.main.bounds.height - 50, alignment: .top)
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(
@@ -84,6 +83,12 @@ struct DetailScreen: View {
             .onReceive(viewModel.$overlord) { overlord in
             }
         }
-        .navigationTitle(house.name)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(house.name)
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .foregroundColor(Color("GoTDarkGray"))
+            }
+        }
     }
 }

@@ -40,17 +40,11 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     }
     
     func fetchCharacter() {
-        guard let overlord = overlord else {
-            print("Overlord is not available.")
-            return
-        }
+        guard let overlord = overlord else { return }
 
         let swornMembersURLs = overlord.swornMembers
         
-        if swornMembersURLs.isEmpty {
-            print("No sworn members available.")
-            return
-        }
+        if swornMembersURLs.isEmpty { return }
 
         for url in swornMembersURLs {
             fetchCharacterInfo(from: url)
@@ -62,7 +56,6 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
             switch result {
             case .success(let character):
                 DispatchQueue.main.async {
-                    print("Character Name: \(character.name)")
                     let name = character.name
                     self.characterNames.append(name)
                 }

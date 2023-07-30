@@ -15,22 +15,21 @@ protocol HomeScreenViewModelProtocol {
 
 final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     
-    private let networkManager: NetworkManagerProtocol
-    
+    private let networkManager: NetworkManager<[HouseResponse]>
+
     @Published var houses: [HouseResponse] = []
     @Published var selectedHouse: HouseResponse? = nil
     
-    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    init(networkManager: NetworkManager<[HouseResponse]> = NetworkManager()) {
         self.networkManager = networkManager
     }
     
     func fetchHouseList() {
-        networkManager.fetchHouses { result in
+        networkManager.fetchData(from: Endpoint.Home.house.absoluteURL) { (result: Result<[HouseResponse], NetworkError>) in
             switch result {
             case .success(let houses):
                 DispatchQueue.main.async {
                     self.houses = houses
-//                    print(houses.first)
                 }
             case .failure(let error):
                 print(error)
@@ -38,3 +37,4 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
         }
     }
 }
+

@@ -15,18 +15,18 @@ protocol DetailScreenViewModelProtocol {
 
 final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtocol {
     
-    private let networkManager: NetworkManagerProtocol
+    private let networkManager: NetworkManager<OverlordResponse>
     var house: HouseResponse
     @Published var characterNames: [String] = []
     @Published var overlord: OverlordResponse?
     
-    init(house: HouseResponse, networkManager: NetworkManagerProtocol = NetworkManager()) {
+    init(house: HouseResponse, networkManager: NetworkManager<OverlordResponse> = NetworkManager()) {
         self.house = house
         self.networkManager = networkManager
     }
     
     func fetchOverlord() {
-        networkManager.fetchOverlord(url: house.overlord) { result in
+        networkManager.fetchData(from: house.overlord) { (result: Result<OverlordResponse, NetworkError>)  in
             switch result {
             case .success(let overlord):
                 DispatchQueue.main.async {
@@ -52,7 +52,7 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     }
 
     private func fetchCharacterInfo(from url: String) {
-        networkManager.fetchCharacter(url: url) { result in
+        networkManager.fetchData(from: url) { (result: Result<CharacterResponse, NetworkError>) in
             switch result {
             case .success(let character):
                 DispatchQueue.main.async {

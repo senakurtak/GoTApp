@@ -30,7 +30,7 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
             case .success(let houses):
                 DispatchQueue.main.async {
                     self.houses = houses
-                    print(houses.first)
+//                    print(houses.first)
                 }
             case .failure(let error):
                 print(error)

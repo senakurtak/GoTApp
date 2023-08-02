@@ -22,7 +22,7 @@ struct DetailScreen: View {
                     Text("Region")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
-
+                    
                     Text("\(house.region)")
                         .font(.system(size: 18, weight: .medium, design: .default))
                         .frame(width: UIScreen.main.bounds.width - padding, height: 50, alignment: .bottomLeading)
@@ -48,20 +48,20 @@ struct DetailScreen: View {
                             .font(.system(size: 18, weight: .medium, design: .default))
                             .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
                     }
-                    if !viewModel.characterNames.isEmpty {
+                    if !viewModel.characters.isEmpty {
                         Text("Sworn Members")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [GridItem(.fixed(50))], spacing: 16) {
-                                ForEach(viewModel.characterNames, id: \.self) { characterName in
-                                    Text(characterName)
+                                ForEach(viewModel.characters, id: \.self) { character in
+                                    Text(character.name)
                                         .font(.system(size: 18, weight: .medium, design: .default))
                                         .foregroundColor(Color("GoTWhite"))
+                                        .frame(width: 200, height: 250)
+                                        .cornerRadius(8)
+                                        .background(Color("GoTDarkGray"))
                                 }
-                                .frame(width: 200, height: 250)
-                                .cornerRadius(8)
-                                .background(Color("GoTDarkGray"))
                             }
                             .padding(.horizontal, padding)
                         }

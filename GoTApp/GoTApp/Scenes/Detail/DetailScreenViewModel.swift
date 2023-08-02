@@ -17,9 +17,11 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     
     private let networkManager: NetworkManager<OverlordResponse>
     var house: HouseResponse
-    @Published var characterNames: [String] = []
-    @Published var overlord: OverlordResponse?
     
+    @Published var overlord: OverlordResponse?
+    @Published var character: CharacterResponse?
+    @Published var characters: [CharacterResponse] = []
+
     init(house: HouseResponse, networkManager: NetworkManager<OverlordResponse> = NetworkManager()) {
         self.house = house
         self.networkManager = networkManager
@@ -57,7 +59,7 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
             case .success(let character):
                 DispatchQueue.main.async {
                     let name = character.name
-                    self.characterNames.append(name)
+                    self.characters.append(character)
                 }
             case .failure(let error):
                 print("Failed to fetch character info: \(error)")

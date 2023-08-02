@@ -44,8 +44,8 @@ struct HomeScreen: View {
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 0) {
                                 ForEach(filteredHouses) { house in
-                                    NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
                                         VStack(alignment: .leading) {
+                                            NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
                                             Text(house.name)
                                                 .font(.headline)
                                                 .foregroundColor(Color("GoTWhite"))

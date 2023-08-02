@@ -73,6 +73,7 @@ struct DetailScreen: View {
             viewModel.fetchCharacter()
         }
         .onReceive(viewModel.$overlord) { overlord in
+            print(viewModel.characters)
         }
         .toolbar {
             ToolbarItem(placement: .principal) {

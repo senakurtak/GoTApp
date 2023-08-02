@@ -10,7 +10,7 @@ import Foundation
 protocol HomeScreenViewModelProtocol {
     var houses: [HouseResponse] { get }
     var selectedHouse: HouseResponse? { get set }
-    func fetchHouseList()
+    func fetchAllHouses()
 }
 
 final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
@@ -24,12 +24,27 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
         self.networkManager = networkManager
     }
     
-    func fetchHouseList() {
-        networkManager.fetchData(from: Endpoint.Home.house.absoluteURL) { (result: Result<[HouseResponse], NetworkError>) in
+    func fetchAllHouses() {
+        fetchHouseList(page: 1)
+    }
+    
+    private func fetchHouseList(page: Int) {
+        let urlString = Endpoint.Home.house.absoluteURL + "?page=\(page)"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
+            return
+        }
+        
+        networkManager.fetchData(from: urlString) { (result: Result<[HouseResponse], NetworkError>) in
             switch result {
             case .success(let houses):
                 DispatchQueue.main.async {
-                    self.houses = houses
+                    self.houses.append(contentsOf: houses)
+                    if houses.isEmpty {
+                        print(self.houses.map { $0.name })
+                    } else {
+                        self.fetchHouseList(page: page + 1)
+                    }
                 }
             case .failure(let error):
                 print(error)
@@ -37,4 +52,3 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
         }
     }
 }
-

@@ -91,7 +91,7 @@ struct HomeScreen: View {
             ))
         }
         .onAppear {
-            viewModel.fetchHouseList()
+            viewModel.fetchAllHouses()
         }
     }
 }

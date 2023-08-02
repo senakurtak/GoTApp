@@ -16,7 +16,6 @@ struct DetailScreen: View {
     
     
     var body: some View {
-        NavigationView {
             ZStack {
                 VStack {
                     Text("Region")
@@ -55,12 +54,14 @@ struct DetailScreen: View {
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [GridItem(.fixed(50))], spacing: 16) {
                                 ForEach(viewModel.characters, id: \.self) { character in
-                                    Text(character.name)
-                                        .font(.system(size: 18, weight: .medium, design: .default))
-                                        .foregroundColor(Color("GoTWhite"))
-                                        .frame(width: 200, height: 250)
-                                        .cornerRadius(8)
-                                        .background(Color("GoTDarkGray"))
+                                    NavigationLink(destination: CharacterDetailScreen(character: character)) {
+                                        Text(character.name)
+                                            .font(.system(size: 18, weight: .medium, design: .default))
+                                            .foregroundColor(Color("GoTWhite"))
+                                            .frame(width: 200, height: 250)
+                                            .cornerRadius(8)
+                                            .background(Color("GoTDarkGray"))
+                                    }
                                 }
                             }
                             .padding(.horizontal, padding)
@@ -81,7 +82,6 @@ struct DetailScreen: View {
                 viewModel.fetchCharacter()
             }
             .onReceive(viewModel.$overlord) { overlord in
-            }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {

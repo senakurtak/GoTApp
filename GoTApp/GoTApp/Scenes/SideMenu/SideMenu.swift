@@ -29,7 +29,7 @@ struct SideMenu: View {
             
             .foregroundColor(Color("GoTDarkGray"))
             
-            NavigationLink(destination: FavoriteHousesScreen()) {
+            NavigationLink(destination: FavoriteCharacterList()) {
                 ImageTextSection(image:"heart.circle.fill" , content: "Favorite Characters")
                     .padding(.top, padding)
                     .padding(.leading, horizontalPadding)

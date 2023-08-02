@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct HouseResponse: Hashable, Decodable, Identifiable {
+struct HouseResponse: Hashable, Codable, Identifiable {
     let id = UUID()
     let url: String
     let name: String

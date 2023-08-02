@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct DetailScreen: View {
-    
-    // MARK: Properties
-    
     let house: HouseResponse
     @StateObject var viewModel: DetailScreenViewModel
-    var padding: CGFloat = 20
     
-    // MARK: UI Elements
+    @State private var isFavorite: Bool = false
+    
     var body: some View {
         ZStack {
             VStack {
@@ -36,7 +33,7 @@ struct DetailScreen: View {
                 } else {
                     TextSection(title: "Loading Overlord Info...", content: "")
                 }
-
+                
                 if !viewModel.characters.isEmpty {
                     Text("Sworn Members")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -62,15 +59,24 @@ struct DetailScreen: View {
                         .font(.system(size: 18, weight: .medium, design: .default))
                         .frame(width: UIScreen.main.bounds.width - padding, alignment: .leading)
                 }
+                
+                Button(action: {
+                    toggleFavorite()
+                }) {
+                    Text(isFavorite ? "Remove from Favorites" : "Add to Favorites")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(isFavorite ? Color.red : Color.green)
+                        .cornerRadius(8)
+                }
+                .padding(.top, padding)
             }
-            .frame(width: UIScreen.main.bounds.width - padding, height: UIScreen.main.bounds.height - 50, alignment: .top)
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom))
         .onAppear {
+            viewModel.house = house
             viewModel.fetchOverlord()
             viewModel.fetchCharacter()
+            updateFavoriteStatus()
         }
         .onReceive(viewModel.$overlord) { overlord in
             print(viewModel.characters)
@@ -82,5 +88,16 @@ struct DetailScreen: View {
                     .foregroundColor(Color("GoTDarkGray"))
             }
         }
+    }
+    
+    var padding: CGFloat = 20
+    
+    func updateFavoriteStatus() {
+        isFavorite = FavoritesManager.shared.isHouseFavorite(house.id)
+    }
+    
+    func toggleFavorite() {
+        isFavorite.toggle()
+        FavoritesManager.shared.toggleFavoriteHouse(house)
     }
 }

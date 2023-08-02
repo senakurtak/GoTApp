@@ -10,19 +10,26 @@ struct FavoriteHousesScreen: View {
     @State private var favoriteHouses: [HouseResponse] = []
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(favoriteHouses) { house in
-                    NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
-                        Text(house.name)
-                            .font(.headline)
+        ZStack{
+            NavigationView {
+                List {
+                    ForEach(favoriteHouses) { house in
+                        NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
+                            Text(house.name)
+                                .font(.headline)
+                        }
                     }
+                    
                 }
+                .navigationTitle("Favorite Houses")
             }
-            .navigationTitle("Favorite Houses")
+            .onAppear {
+                favoriteHouses = FavoritesManager.shared.favoriteHouses
+            }
         }
-        .onAppear {
-            favoriteHouses = FavoritesManager.shared.favoriteHouses
-        }
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        
+        .background(
+            LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom))
     }
 }

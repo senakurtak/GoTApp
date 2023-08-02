@@ -7,13 +7,12 @@
 
 import Foundation
 
-final class FavoritesManager {
-    
+class FavoritesManager {
     static let shared = FavoritesManager()
-    
+
     private let userDefaults = UserDefaults.standard
     private let favoritesKey = "FavoriteHouses"
-    
+
     var favoriteHouses: [HouseResponse] {
         get {
             if let data = userDefaults.data(forKey: favoritesKey),
@@ -29,16 +28,24 @@ final class FavoritesManager {
             }
         }
     }
-    
-    func isHouseFavorite(_ houseId: UUID) -> Bool {
-        return favoriteHouses.contains(where: { $0.id == houseId })
+    private init() {}
+
+    func isHouseFavorite(_ name: String) -> Bool {
+        return favoriteHouses.contains { $0.name == name }
     }
-    
+
     func toggleFavoriteHouse(_ house: HouseResponse) {
-        if let index = favoriteHouses.firstIndex(where: { $0.id == house.id }) {
-            favoriteHouses.remove(at: index)
+        if isHouseFavorite(house.name) {
+            favoriteHouses.removeAll { $0.name == house.name }
         } else {
             favoriteHouses.append(house)
+            saveFavoriteHouses()
+        }
+    }
+
+    private func saveFavoriteHouses() {
+        if let data = try? JSONEncoder().encode(favoriteHouses) {
+            userDefaults.set(data, forKey: favoritesKey)
         }
     }
 }

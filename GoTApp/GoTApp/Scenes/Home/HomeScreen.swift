@@ -65,8 +65,6 @@ struct HomeScreen: View {
                         LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                     )
-                    .navigationTitle("List of Houses")
-
                     if self.showMenu {
                         SideMenu()
                             .frame(width: geometry.size.width / 2, height: geometry.size.height)

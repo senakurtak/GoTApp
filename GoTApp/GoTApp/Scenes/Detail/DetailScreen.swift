@@ -61,13 +61,35 @@ struct DetailScreen: View {
                 }
                 
                 Button(action: {
+                    isFavorite = FavoritesManager.shared.isHouseFavorite(house.name)
                     toggleFavorite()
+                    if isFavorite {
+                        Text("Remove from Favorites")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.red)
+                            .cornerRadius(8)
+                    } else {
+                        Text("Add to Favorites")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.green)
+                            .cornerRadius(8)
+                    }
                 }) {
-                    Text(isFavorite ? "Remove from Favorites" : "Add to Favorites")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(isFavorite ? Color.red : Color.green)
-                        .cornerRadius(8)
+                    if isFavorite {
+                        Text("Remove from Favorites")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.red)
+                            .cornerRadius(8)
+                    } else {
+                        Text("Add to Favorites")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.green)
+                            .cornerRadius(8)
+                    }
                 }
                 .padding(.top, padding)
             }
@@ -93,7 +115,7 @@ struct DetailScreen: View {
     var padding: CGFloat = 20
     
     func updateFavoriteStatus() {
-        isFavorite = FavoritesManager.shared.isHouseFavorite(house.id)
+        isFavorite = FavoritesManager.shared.isHouseFavorite(house.name)
     }
     
     func toggleFavorite() {

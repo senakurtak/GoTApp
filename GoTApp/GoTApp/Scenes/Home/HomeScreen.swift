@@ -9,16 +9,16 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var viewModel = HomeScreenViewModel()
-    
+    @State var showMenu: Bool = false
     var columns: [GridItem] = [
         GridItem(.flexible(minimum: 100, maximum: 250), spacing: 0),
         GridItem(.flexible(minimum: 100, maximum: 250), spacing: 0),
     ]
-    
+
     var cellWidth: CGFloat = 150
     var cellHeight: CGFloat = 100
     var padding: CGFloat = 10
-    
+
     @State private var searchText = ""
 
     var filteredHouses: [HouseResponse] {
@@ -31,42 +31,67 @@ struct HomeScreen: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                SearchBar(searchText: $searchText)
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(filteredHouses) { house in
-                            NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
-                                VStack(alignment: .leading) {
-                                    Text(house.name)
-                                        .font(.headline)
-                                        .foregroundColor(Color("GoTWhite"))
+
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+
+                    VStack {
+                        SearchBar(searchText: $searchText)
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 0) {
+                                ForEach(filteredHouses) { house in
+                                    NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
+                                        VStack(alignment: .leading) {
+                                            Text(house.name)
+                                                .font(.headline)
+                                                .foregroundColor(Color("GoTWhite"))
+                                        }
+                                        .padding(padding)
+                                        .frame(width: cellWidth, height: cellHeight)
+                                        .background(Color("GoTDarkGray"))
+                                        .cornerRadius(8)
+                                    }
+                                    .padding(padding)
                                 }
-                                .padding(padding)
-                                .frame(width: cellWidth, height: cellHeight)
-                                .background(Color("GoTLightGray"))
-                                .cornerRadius(8)
                             }
                             .padding(padding)
                         }
                     }
-                    .padding(padding)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom)
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .navigationTitle("List of Houses")
+
+                    if self.showMenu {
+                        SideMenu()
+                            .frame(width: geometry.size.width / 2, height: geometry.size.height)
+                            .transition(.move(edge: .leading))
+                    }
                 }
+                .gesture(DragGesture()
+                            .onEnded {
+                                if $0.translation.width < -100 {
+                                    withAnimation {
+                                        self.showMenu = false
+                                    }
+                                }
+                            })
             }
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-            )
-            .navigationTitle("List of Houses")
+            
+            .navigationBarItems(leading: (
+                Button(action: {
+                    withAnimation {
+                        self.showMenu.toggle()
+                    }
+                }) {
+                    Image(systemName: "line.horizontal.3")
+                        .foregroundColor(Color("GoTDarkGray"))
+                }
+            ))
         }
         .onAppear {
             viewModel.fetchHouseList()
         }
-    }
-}
-
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
     }
 }

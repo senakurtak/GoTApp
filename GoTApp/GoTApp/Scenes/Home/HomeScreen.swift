@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    
+    // MARK: Properties
     @ObservedObject var viewModel = HomeScreenViewModel()
     @State var showMenu: Bool = false
     var columns: [GridItem] = [
@@ -21,6 +23,7 @@ struct HomeScreen: View {
 
     @State private var searchText = ""
 
+    // MARK: Sorting Houses with or without Search Bar
     var filteredHouses: [HouseResponse] {
         if searchText.isEmpty {
             return viewModel.houses
@@ -28,7 +31,8 @@ struct HomeScreen: View {
             return viewModel.houses.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
     }
-
+    
+    // MARK: UI Elements
     var body: some View {
         NavigationView {
 

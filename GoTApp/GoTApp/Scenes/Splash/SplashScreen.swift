@@ -9,9 +9,12 @@
 import SwiftUI
 
 struct SplashScreen: View {
+    // MARK: Properties
 
     @State var isActive: Bool = false
     
+    // MARK: UI Elements
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {

@@ -13,7 +13,7 @@ protocol NetworkManagerProtocol {
     func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void)
 }
 
-class NetworkManager<ResultType>: NetworkManagerProtocol {
+final class NetworkManager<ResultType>: NetworkManagerProtocol {
     func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
         guard let url = URL(string: url) else { return }
         

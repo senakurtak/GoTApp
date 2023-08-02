@@ -25,10 +25,11 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     }
     
     func fetchAllHouses() {
-        fetchHouseList(page: 1)
+        fetchHouseList(page: 0)
     }
     
     private func fetchHouseList(page: Int) {
+        
         let urlString = Endpoint.Home.house.absoluteURL + "?page=\(page)"
         guard let url = URL(string: urlString) else {
             print("Invalid URL: \(urlString)")
@@ -40,9 +41,7 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
             case .success(let houses):
                 DispatchQueue.main.async {
                     self.houses.append(contentsOf: houses)
-                    if houses.isEmpty {
-                        print(self.houses.map { $0.name })
-                    } else {
+                    if !houses.isEmpty {
                         self.fetchHouseList(page: page + 1)
                     }
                 }

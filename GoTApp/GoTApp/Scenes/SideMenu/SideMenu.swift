@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SideMenu: View {
-    
+    // MARK: Properties
     private let padding: CGFloat = 30
     private let horizontalPadding: CGFloat = 10
     
+    // MARK: UI Elements
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -28,34 +30,20 @@ struct SideMenu: View {
             .foregroundColor(Color("GoTDarkGray"))
             
             NavigationLink(destination: FavoriteHousesScreen()) {
-                HStack {
-                    Image(systemName: "heart.circle.fill")
-                        .foregroundColor(.white)
-                        .imageScale(.large)
-                    Text("Favorite Characters")
-                        .foregroundColor(.white)
-                        .font(.body)
-                }
-                .padding(.top, padding)
-                .padding(.leading, horizontalPadding)
-                .foregroundColor(Color("GoTDarkGray"))
+                ImageTextSection(image:"heart.circle.fill" , content: "Favorite Characters")
+                    .padding(.top, padding)
+                    .padding(.leading, horizontalPadding)
+                    .foregroundColor(Color("GoTDarkGray"))
             }
             
             NavigationLink(destination: FavoriteHousesScreen()) {
-                HStack {
-                    Image(systemName: "heart.circle.fill")
-                        .foregroundColor(.white)
-                        .imageScale(.large)
-                    Text("Favorite Houses")
-                        .foregroundColor(.white)
-                        .font(.body)
-                }
-                .padding(.top, padding)
-                .padding(.leading, horizontalPadding)
+                ImageTextSection(image:"house.circle.fill" , content: "Favorite Houses")
+                    .padding(.top, padding)
+                    .padding(.leading, horizontalPadding)
                 
-                .foregroundColor(Color("GoTDarkGray"))
+                    .foregroundColor(Color("GoTDarkGray"))
             }
-                        Spacer()
+            Spacer()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .background(Color("GoTDarkGray"))
                 .edgesIgnoringSafeArea(.all)

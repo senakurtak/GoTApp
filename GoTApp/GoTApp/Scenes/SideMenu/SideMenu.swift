@@ -10,6 +10,7 @@ import SwiftUI
 struct SideMenu: View {
     
     private let padding: CGFloat = 30
+    private let horizontalPadding: CGFloat = 10
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,41 +20,42 @@ struct SideMenu: View {
                     .imageScale(.large)
                 Text("Profile")
                     .foregroundColor(.white)
-                    .font(.headline)
+                    .font(.body)
             }
             .padding(.top, padding)
-            .padding(.leading, padding)
+            .padding(.leading, horizontalPadding)
             
             .foregroundColor(Color("GoTDarkGray"))
-
-            HStack {
-                Image(systemName: "envelope")
-                    .foregroundColor(.white)
-                    .imageScale(.large)
-                Text("Messages")
-                    .foregroundColor(.white)
-                    .font(.headline)
-            }
-            .padding(.top, padding)
-            .padding(.leading, padding)
-
-            .foregroundColor(Color("GoTDarkGray"))
-
-            HStack {
-                Image(systemName: "gear")
-                    .foregroundColor(.white)
-                    .imageScale(.large)
-                Text("Settings")
-                    .foregroundColor(.white)
-                    .font(.headline)
+            
+            NavigationLink(destination: FavoriteHousesScreen()) {
+                HStack {
+                    Image(systemName: "heart.circle.fill")
+                        .foregroundColor(.white)
+                        .imageScale(.large)
+                    Text("Favorite Characters")
+                        .foregroundColor(.white)
+                        .font(.body)
+                }
+                .padding(.top, padding)
+                .padding(.leading, horizontalPadding)
+                .foregroundColor(Color("GoTDarkGray"))
             }
             
-            .padding(.top, padding)
-            .padding(.leading, padding)
-
-            .foregroundColor(Color("GoTDarkGray"))
-
-            Spacer()
+            NavigationLink(destination: FavoriteHousesScreen()) {
+                HStack {
+                    Image(systemName: "heart.circle.fill")
+                        .foregroundColor(.white)
+                        .imageScale(.large)
+                    Text("Favorite Houses")
+                        .foregroundColor(.white)
+                        .font(.body)
+                }
+                .padding(.top, padding)
+                .padding(.leading, horizontalPadding)
+                
+                .foregroundColor(Color("GoTDarkGray"))
+            }
+                        Spacer()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .background(Color("GoTDarkGray"))
                 .edgesIgnoringSafeArea(.all)

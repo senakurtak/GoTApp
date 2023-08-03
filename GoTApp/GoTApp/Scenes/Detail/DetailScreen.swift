@@ -100,9 +100,6 @@ struct DetailScreen: View {
             viewModel.fetchCharacter()
             updateFavoriteStatus()
         }
-        .onReceive(viewModel.$overlord) { overlord in
-            print(viewModel.characters)
-        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(house.name)

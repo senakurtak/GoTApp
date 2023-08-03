@@ -12,24 +12,31 @@ struct FavoriteHousesScreen: View {
     var body: some View {
         ZStack{
             NavigationView {
-                List {
-                    ForEach(favoriteHouses) { house in
-                        NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house)).navigationBarBackButtonHidden(true)) {
-                            Text(house.name)
-                                .font(.headline)
+                if favoriteHouses.isEmpty {
+                    ZStack{
+                        Text("There is no favorite home to be displayed")
+                            .font(.headline)
+                            .foregroundColor(Color.gray)
+                        Image(systemName: "heart")
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .foregroundColor(Color.gray.opacity(0.3))
+                    }
+                } else {
+                    List {
+                        ForEach(favoriteHouses) { house in
+                            NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house)).navigationBarBackButtonHidden(true)) {
+                                Text(house.name)
+                                    .font(.headline)
+                            }
                         }
                     }
-                    
+                    .navigationTitle("Favorite Houses")
                 }
-                .navigationTitle("Favorite Houses")
             }
             .onAppear {
                 favoriteHouses = FavoritesManager.shared.favoriteHouses
             }
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom))
     }
 }

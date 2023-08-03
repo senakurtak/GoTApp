@@ -94,7 +94,7 @@ struct DetailScreen: View {
                 .padding(.top, padding)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.top, 100)
+            .padding(.top, 150)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {

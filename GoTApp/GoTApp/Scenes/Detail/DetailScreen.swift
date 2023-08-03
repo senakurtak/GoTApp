@@ -111,6 +111,7 @@ struct DetailScreen: View {
             }
         }
     }
+
     
     var padding: CGFloat = 20
     

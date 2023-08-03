@@ -14,7 +14,7 @@ struct FavoriteHousesScreen: View {
             NavigationView {
                 List {
                     ForEach(favoriteHouses) { house in
-                        NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
+                        NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house)).navigationBarBackButtonHidden(true)) {
                             Text(house.name)
                                 .font(.headline)
                         }

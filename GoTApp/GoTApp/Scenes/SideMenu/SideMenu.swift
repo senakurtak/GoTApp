@@ -16,31 +16,17 @@ struct SideMenu: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "person")
-                    .foregroundColor(.white)
-                    .imageScale(.large)
-                Text("Profile")
-                    .foregroundColor(.white)
-                    .font(.body)
-            }
+            ImageTextSection(image:"person.circle.fill" , content: "Profile")
             .padding(.top, padding)
             .padding(.leading, horizontalPadding)
             
             .foregroundColor(Color("GoTDarkGray"))
             
-            NavigationLink(destination: FavoriteCharacterList()) {
-                ImageTextSection(image:"heart.circle.fill" , content: "Favorite Characters")
-                    .padding(.top, padding)
-                    .padding(.leading, horizontalPadding)
-                    .foregroundColor(Color("GoTDarkGray"))
-            }
             
             NavigationLink(destination: FavoriteHousesScreen()) {
                 ImageTextSection(image:"house.circle.fill" , content: "Favorite Houses")
                     .padding(.top, padding)
                     .padding(.leading, horizontalPadding)
-                
                     .foregroundColor(Color("GoTDarkGray"))
             }
             Spacer()

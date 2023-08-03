@@ -18,7 +18,6 @@ struct DetailScreen: View {
             VStack {
                 TextSection(title: "Region", content: house.region)
                     .padding(.top, padding)
-                    .padding(.bottom, padding)
                 
                 if house.coatOfArms != "" {
                     TextSection(title: "Coat of Arms", content: house.coatOfArms)
@@ -36,8 +35,9 @@ struct DetailScreen: View {
                 
                 if !viewModel.characters.isEmpty {
                     Text("Sworn Members")
+                        .foregroundColor(Color.red)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottomLeading)
+                        .frame(width: UIScreen.main.bounds.width - padding, alignment: .bottom)
                     ScrollView(.horizontal) {
                         LazyHGrid(rows: [GridItem(.fixed(50))], spacing: padding) {
                             ForEach(viewModel.characters, id: \.self) { character in
@@ -93,7 +93,10 @@ struct DetailScreen: View {
                 }
                 .padding(.top, padding)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(.top, 100)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {
             viewModel.house = house
             viewModel.fetchOverlord()
@@ -107,9 +110,14 @@ struct DetailScreen: View {
                     .foregroundColor(Color("GoTDarkGray"))
             }
         }
+
+        .background(
+            LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom))
+        .ignoresSafeArea(.container)
+
     }
 
-    
+
     var padding: CGFloat = 20
     
     func updateFavoriteStatus() {

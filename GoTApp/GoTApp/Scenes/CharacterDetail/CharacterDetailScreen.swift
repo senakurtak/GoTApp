@@ -32,7 +32,7 @@ struct CharacterDetailScreen: View {
                     
                     
                     if character.tvSeries.first != "" || character.tvSeries != [""] {
-                        TextSection(title: "TV Series", content: "Season List")
+                        TextSection(title: "TV Series", content: "")
                             .padding(.top, padding)
                         
                         ScrollView(.horizontal) {
@@ -45,18 +45,31 @@ struct CharacterDetailScreen: View {
                                             .frame(width: 200, height: 100)
                                             .cornerRadius(8)
                                             .background(Color("GoTDarkGray"))
-                                        
+                                            .padding(.horizontal, padding)
+                                            .padding(.top, padding)
                                     }
                                 }
                             }
                             .padding(.horizontal, padding)
                             .padding(.top, padding)
                         }
+                    } else {
+                        HStack{
+                            Text("There is no TV Series to be listed")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(Color("GoTWhite"))
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 50)
+                                .cornerRadius(8)
+                                .background(Color.red)
+                                .padding(.leading, 10)
+                        }
+
+
                     }
                     
                     if character.titles.first != "" || character.titles != [""] {
                         
-                        TextSection(title: "Titles", content: "Character Title List")
+                        TextSection(title: "Titles", content: "")
                             .padding(.top, padding)
                         
                         ScrollView(.horizontal) {
@@ -70,13 +83,25 @@ struct CharacterDetailScreen: View {
                                             .frame(width: 200, height: 100)
                                             .cornerRadius(8)
                                             .background(Color("GoTDarkGray"))
-                                        
+                                            .padding(.horizontal, padding)
+                                            .padding(.top, padding)
+
                                     }
                                     
                                 }
                             }
                             .padding(.horizontal, padding)
                             .padding(.top, padding)
+                        }
+                    } else {
+                        HStack{
+                            Text("There is no Titles to be listed")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(Color("GoTWhite"))
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 50)
+                                .cornerRadius(8)
+                                .background(Color.red)
+                                .padding(.leading, 10)
                         }
                     }
                 }

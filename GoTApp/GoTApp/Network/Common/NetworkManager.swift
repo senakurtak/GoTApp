@@ -1,21 +1,17 @@
-//
-//  NetworkManager.swift
-//  GoTApp
-//
-//  Created by Sena Kurtak on 26.07.2023.
-//
-
 import Foundation
 
 protocol NetworkManagerProtocol {
     associatedtype ResultType
     
-    func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void)
+    func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionTask
 }
 
 final class NetworkManager<ResultType>: NetworkManagerProtocol {
-    func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        guard let url = URL(string: url) else { return }
+    func fetchData<T: Decodable>(from url: String, completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionTask {
+        guard let url = URL(string: url) else {
+            completion(.failure(.invalidURL))
+            return URLSessionTask()
+        }
         
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -57,5 +53,6 @@ final class NetworkManager<ResultType>: NetworkManagerProtocol {
             }
         }
         task.resume()
+        return task
     }
 }

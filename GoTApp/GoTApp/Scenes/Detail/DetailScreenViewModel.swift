@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 protocol DetailScreenViewModelProtocol {
     var house: HouseResponse { get }
     func fetchOverlord()
@@ -17,9 +18,10 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     
     private let networkManager: NetworkManager<OverlordResponse>
     var house: HouseResponse
-    
+    private var requestOverlord: URLSessionTask?
+    private var requestCharacter: URLSessionTask?
+
     @Published var overlord: OverlordResponse?
-    @Published var character: CharacterResponse?
     @Published var characters: [CharacterResponse] = []
 
     init(house: HouseResponse, networkManager: NetworkManager<OverlordResponse> = NetworkManager()) {
@@ -28,12 +30,13 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     }
     
     func fetchOverlord() {
-        networkManager.fetchData(from: house.overlord) { (result: Result<OverlordResponse, NetworkError>)  in
+        requestOverlord?.cancel()
+        requestOverlord = networkManager.fetchData(from: house.overlord) { [weak self] (result: Result<OverlordResponse, NetworkError>)  in
             switch result {
             case .success(let overlord):
                 DispatchQueue.main.async {
-                    self.overlord = overlord
-                    self.fetchCharacter()
+                    self?.overlord = overlord
+                    self?.fetchCharacter()
                 }
             case .failure(let error):
                 print(error)
@@ -54,16 +57,20 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
     }
 
     private func fetchCharacterInfo(from url: String) {
-        networkManager.fetchData(from: url) { (result: Result<CharacterResponse, NetworkError>) in
+        requestCharacter?.cancel()
+        requestCharacter = networkManager.fetchData(from: url) { [weak self] (result: Result<CharacterResponse, NetworkError>) in
             switch result {
             case .success(let character):
                 DispatchQueue.main.async {
-                    self.characters.append(character)
+                    self?.characters.append(character)
                 }
             case .failure(let error):
                 print("Failed to fetch character info: \(error)")
             }
         }
     }
-
+    deinit {
+        requestOverlord?.cancel()
+        requestCharacter?.cancel()
+    }
 }

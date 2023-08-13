@@ -63,19 +63,6 @@ struct DetailScreen: View {
                 Button(action: {
                     isFavorite = FavoritesManager.shared.isHouseFavorite(house.name)
                     toggleFavorite()
-                    if isFavorite {
-                        Text("Remove from Favorites")
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.red)
-                            .cornerRadius(8)
-                    } else {
-                        Text("Add to Favorites")
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .cornerRadius(8)
-                    }
                 }) {
                     if isFavorite {
                         Text("Remove from Favorites")
@@ -94,7 +81,7 @@ struct DetailScreen: View {
                 .padding(.top, padding)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.top, 150)
+            .padding(.top, 100)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {

@@ -29,14 +29,11 @@ final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     }
     
     private func fetchHouseList(page: Int) {
-        
-        let urlString = Endpoint.Home.house.absoluteURL + "?page=\(page)"
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL: \(urlString)")
+        guard let url = URL(string: Endpoint.Home.house.absoluteURL + "?page=\(page)") else {
+            print("Invalid URL: \(Endpoint.Home.house.absoluteURL + "?page=\(page)")")
             return
         }
-        
-        networkManager.fetchData(from: urlString) { (result: Result<[HouseResponse], NetworkError>) in
+        networkManager.fetchData(from: "\(url)") { (result: Result<[HouseResponse], NetworkError>) in
             switch result {
             case .success(let houses):
                 DispatchQueue.main.async {

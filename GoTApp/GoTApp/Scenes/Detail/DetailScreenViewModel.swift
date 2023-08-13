@@ -58,7 +58,6 @@ final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtoc
             switch result {
             case .success(let character):
                 DispatchQueue.main.async {
-                    let name = character.name
                     self.characters.append(character)
                 }
             case .failure(let error):

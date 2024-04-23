@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CharacterDetailScreen: View {
     let character: CharacterResponse
-    let padding: CGFloat = 16.0 // Define the padding value here
+    let padding: CGFloat = 16.0
     
     var body: some View {
         ZStack {

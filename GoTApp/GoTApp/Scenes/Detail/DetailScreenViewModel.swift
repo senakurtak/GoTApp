@@ -7,70 +7,58 @@
 
 import Foundation
 
+import Foundation
 
 protocol DetailScreenViewModelProtocol {
     var house: HouseResponse { get }
-    func fetchOverlord()
-    func fetchCharacter()
+    func fetchOverlord() async
+    func fetchCharacter() async
 }
 
 final class DetailScreenViewModel: ObservableObject, DetailScreenViewModelProtocol {
     
-    private let networkManager: NetworkManager<OverlordResponse>
+    private let networkManager: NetworkManager
     var house: HouseResponse
-    private var requestOverlord: URLSessionTask?
-    private var requestCharacter: URLSessionTask?
 
     @Published var overlord: OverlordResponse?
     @Published var characters: [CharacterResponse] = []
 
-    init(house: HouseResponse, networkManager: NetworkManager<OverlordResponse> = NetworkManager()) {
+    init(house: HouseResponse, networkManager: NetworkManager = NetworkManager()) {
         self.house = house
         self.networkManager = networkManager
     }
     
-    func fetchOverlord() {
-        requestOverlord?.cancel()
-        requestOverlord = networkManager.fetchData(from: house.overlord) { [weak self] (result: Result<OverlordResponse, NetworkError>)  in
-            switch result {
-            case .success(let overlord):
-                DispatchQueue.main.async {
-                    self?.overlord = overlord
-                    self?.fetchCharacter()
-                }
-            case .failure(let error):
-                print(error)
+    func fetchOverlord() async {
+        do {
+            let overlordResponse: OverlordResponse = try await networkManager.fetchData(from: house.overlord)
+            DispatchQueue.main.async {
+                self.overlord = overlordResponse
             }
+            await fetchCharacter()
+        } catch {
+            print("Failed to fetch overlord: \(error)")
         }
     }
     
-    func fetchCharacter() {
+    func fetchCharacter() async {
         guard let overlord = overlord else { return }
 
         let swornMembersURLs = overlord.swornMembers
-        
         if swornMembersURLs.isEmpty { return }
 
         for url in swornMembersURLs {
-            fetchCharacterInfo(from: url)
+            await fetchCharacterInfo(from: url)
         }
     }
 
-    private func fetchCharacterInfo(from url: String) {
-        requestCharacter?.cancel()
-        requestCharacter = networkManager.fetchData(from: url) { [weak self] (result: Result<CharacterResponse, NetworkError>) in
-            switch result {
-            case .success(let character):
-                DispatchQueue.main.async {
-                    self?.characters.append(character)
-                }
-            case .failure(let error):
-                print("Failed to fetch character info: \(error)")
+    private func fetchCharacterInfo(from url: String) async {
+        do {
+            let characterResponse: CharacterResponse = try await networkManager.fetchData(from: url)
+            DispatchQueue.main.async {
+                self.characters.append(characterResponse)
             }
+        } catch {
+            print("Failed to fetch character info: \(error)")
         }
-    }
-    deinit {
-        requestOverlord?.cancel()
-        requestCharacter?.cancel()
     }
 }

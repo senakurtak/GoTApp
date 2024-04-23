@@ -85,10 +85,11 @@ struct DetailScreen: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {
-            viewModel.house = house
-            viewModel.fetchOverlord()
-            viewModel.fetchCharacter()
-            updateFavoriteStatus()
+            Task {
+                await viewModel.fetchOverlord()
+                await viewModel.fetchCharacter()
+                updateFavoriteStatus()
+            }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -101,9 +102,7 @@ struct DetailScreen: View {
         .background(
             LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom))
         .ignoresSafeArea(.container)
-
     }
-
 
     var padding: CGFloat = 20
     

@@ -35,27 +35,16 @@ struct HomeScreen: View {
     // MARK: UI Elements
     var body: some View {
         NavigationView {
-
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-
                     VStack {
                         SearchBar(searchText: $searchText)
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 0) {
                                 ForEach(filteredHouses) { house in
-                                        VStack(alignment: .leading) {
-                                            NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
-                                            Text(house.name)
-                                                .font(.headline)
-                                                .foregroundColor(Color("GoTWhite"))
-                                        }
-                                        .padding(padding)
-                                        .frame(width: cellWidth, height: cellHeight)
-                                        .background(Color("GoTDarkGray"))
-                                        .cornerRadius(8)
+                                    NavigationLink(destination: DetailScreen(house: house, viewModel: DetailScreenViewModel(house: house))) {
+                                        HouseCell(house: house, cellWidth: cellWidth, cellHeight: cellHeight, padding: padding)
                                     }
-                                    .padding(padding)
                                 }
                             }
                             .padding(padding)
@@ -63,8 +52,9 @@ struct HomeScreen: View {
                     }
                     .background(
                         LinearGradient(gradient: Gradient(colors: [Color("GoTWhite"), Color("GoTDarkGray")]), startPoint: .top, endPoint: .bottom)
-                            .edgesIgnoringSafeArea(.all)
+                        .edgesIgnoringSafeArea(.all)
                     )
+                    
                     if self.showMenu {
                         SideMenu()
                             .frame(width: geometry.size.width / 2, height: geometry.size.height)
@@ -93,7 +83,9 @@ struct HomeScreen: View {
             ))
         }
         .onAppear {
-            viewModel.fetchAllHouses()
+            Task {
+                await viewModel.fetchAllHouses()
+            }
         }
     }
 }

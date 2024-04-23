@@ -10,46 +10,42 @@ import Foundation
 protocol HomeScreenViewModelProtocol {
     var houses: [HouseResponse] { get }
     var selectedHouse: HouseResponse? { get set }
-    func fetchAllHouses()
+    func fetchAllHouses() async
 }
 
 final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     
-    private var networkManager: NetworkManager<[HouseResponse]>
-    private var request: URLSessionTask?
+    private var networkManager: NetworkManager
     
     @Published var houses: [HouseResponse] = []
     @Published var selectedHouse: HouseResponse? = nil
     
-    init(networkManager: NetworkManager<[HouseResponse]> = NetworkManager()) {
+    init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
     }
     
-    func fetchAllHouses() {
-        request = fetchHouseList(page: 0)
+    func fetchAllHouses() async {
+        var page = 0
+        repeat {
+            do {
+                let fetchedHouses = try await fetchHouseList(page: page)
+                DispatchQueue.main.async {
+                    self.houses.append(contentsOf: fetchedHouses)
+                }
+                page += 1
+            } catch {
+                print("Failed to fetch houses: \(error)")
+                return
+            }
+        } while true
     }
     
-    private func fetchHouseList(page: Int) -> URLSessionTask {
-        request?.cancel()
-        guard let url = URL(string: Endpoint.Home.house.absoluteURL + "?page=\(page)") else {
-            print("Invalid URL: \(Endpoint.Home.house.absoluteURL + "?page=\(page)")")
-            return URLSessionTask()
+    private func fetchHouseList(page: Int) async throws -> [HouseResponse] {
+        let urlString = Endpoint.Home.house.absoluteURL + "?page=\(page)"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
+            throw NetworkError.invalidURL
         }
-        return networkManager.fetchData(from: "\(url)") { (result: Result<[HouseResponse], NetworkError>) in
-            switch result {
-            case .success(let houses):
-                DispatchQueue.main.async {
-                    self.houses.append(contentsOf: houses)
-                    if !houses.isEmpty {
-                        _ = self.fetchHouseList(page: page + 1)
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    deinit {
-        request?.cancel()
+        return try await networkManager.fetchData(from: "\(url)")
     }
 }

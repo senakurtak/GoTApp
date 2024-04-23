@@ -45,11 +45,14 @@ struct FavoritesWidgetEntryView : View {
             VStack {
                 Text("10")
                     .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.black.opacity(0.3))
                 HStack {
                     Text("🛖")
                         .font(.title)
                     Text("Favorite Houses")
                         .font(.subheadline)
+                        .foregroundStyle(.black.opacity(0.7))
                 }
                 .padding(5)
             }

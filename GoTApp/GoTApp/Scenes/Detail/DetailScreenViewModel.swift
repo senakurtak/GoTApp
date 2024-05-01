@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 protocol DetailScreenViewModelProtocol {
     var house: HouseResponse { get }
     func fetchOverlord() async

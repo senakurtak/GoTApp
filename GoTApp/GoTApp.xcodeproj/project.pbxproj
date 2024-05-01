@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		B31375432BD80EC20050F72C /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D699BB2A7B07DB00F71165 /* FavoritesManager.swift */; };
 		B31375442BD80ED10050F72C /* HouseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */; };
+		B313754C2BE2CA830050F72C /* GoTAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B313754B2BE2CA830050F72C /* GoTAppTests.swift */; };
+		B31375522BE2CABB0050F72C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0A2A717D5F00AC8587 /* NetworkManager.swift */; };
+		B31375532BE2CAC70050F72C /* HouseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFF2A6F3D0700AC8587 /* HouseResponse.swift */; };
+		B31375542BE2CAD30050F72C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0D2A717D8F00AC8587 /* NetworkError.swift */; };
+		B31375572BE2CF510050F72C /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31375562BE2CF510050F72C /* MockNetworkManager.swift */; };
+		B31375592BE2CF660050F72C /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31375582BE2CF660050F72C /* MockService.swift */; };
+		B313755A2BE2CF9F0050F72C /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADAFD2A6F3CD000AC8587 /* HomeScreenViewModel.swift */; };
+		B313755B2BE2CFA80050F72C /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31375562BE2CF510050F72C /* MockNetworkManager.swift */; };
+		B313755C2BE2CFAE0050F72C /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31375582BE2CF660050F72C /* MockService.swift */; };
+		B313755D2BE2D14E0050F72C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0F2A717DD600AC8587 /* Endpoint.swift */; };
+		B313755E2BE2D14F0050F72C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37ADB0F2A717DD600AC8587 /* Endpoint.swift */; };
 		B379FA292A6F3406001B39E3 /* GoTAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B379FA282A6F3406001B39E3 /* GoTAppApp.swift */; };
 		B379FA2D2A6F3407001B39E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B379FA2C2A6F3407001B39E3 /* Assets.xcassets */; };
 		B379FA302A6F3407001B39E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B379FA2F2A6F3407001B39E3 /* Preview Assets.xcassets */; };
@@ -42,6 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B313754D2BE2CA830050F72C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B379FA1D2A6F3406001B39E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B379FA242A6F3406001B39E3;
+			remoteInfo = GoTApp;
+		};
 		B3C0285B2BD8032E0046B75E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B379FA1D2A6F3406001B39E3 /* Project object */;
@@ -66,6 +84,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B31375492BE2CA830050F72C /* GoTAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoTAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B313754B2BE2CA830050F72C /* GoTAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTAppTests.swift; sourceTree = "<group>"; };
+		B31375562BE2CF510050F72C /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		B31375582BE2CF660050F72C /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		B379FA252A6F3406001B39E3 /* GoTApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoTApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B379FA282A6F3406001B39E3 /* GoTAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTAppApp.swift; sourceTree = "<group>"; };
 		B379FA2C2A6F3407001B39E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +123,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B31375462BE2CA830050F72C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B379FA222A6F3406001B39E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,11 +149,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B313754A2BE2CA830050F72C /* GoTAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B313754B2BE2CA830050F72C /* GoTAppTests.swift */,
+			);
+			path = GoTAppTests;
+			sourceTree = "<group>";
+		};
+		B31375552BE2CF2F0050F72C /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				B31375562BE2CF510050F72C /* MockNetworkManager.swift */,
+				B31375582BE2CF660050F72C /* MockService.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		B379FA1C2A6F3406001B39E3 = {
 			isa = PBXGroup;
 			children = (
 				B379FA272A6F3406001B39E3 /* GoTApp */,
 				B3C0284F2BD8032C0046B75E /* FavoritesWidget */,
+				B313754A2BE2CA830050F72C /* GoTAppTests */,
 				B3C0284A2BD8032B0046B75E /* Frameworks */,
 				B379FA262A6F3406001B39E3 /* Products */,
 			);
@@ -135,6 +182,7 @@
 			children = (
 				B379FA252A6F3406001B39E3 /* GoTApp.app */,
 				B3C028492BD8032B0046B75E /* FavoritesWidgetExtension.appex */,
+				B31375492BE2CA830050F72C /* GoTAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,6 +253,7 @@
 		B37ADB062A717D3000AC8587 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B31375552BE2CF2F0050F72C /* Test */,
 				B37ADB092A717D4400AC8587 /* Helper */,
 				B37ADB082A717D3F00AC8587 /* Common */,
 				B37ADB072A717D3800AC8587 /* Models */,
@@ -313,6 +362,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B31375482BE2CA830050F72C /* GoTAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B31375512BE2CA830050F72C /* Build configuration list for PBXNativeTarget "GoTAppTests" */;
+			buildPhases = (
+				B31375452BE2CA830050F72C /* Sources */,
+				B31375462BE2CA830050F72C /* Frameworks */,
+				B31375472BE2CA830050F72C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B313754E2BE2CA830050F72C /* PBXTargetDependency */,
+			);
+			name = GoTAppTests;
+			productName = GoTAppTests;
+			productReference = B31375492BE2CA830050F72C /* GoTAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B379FA242A6F3406001B39E3 /* GoTApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B379FA332A6F3407001B39E3 /* Build configuration list for PBXNativeTarget "GoTApp" */;
@@ -359,6 +426,10 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					B31375482BE2CA830050F72C = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = B379FA242A6F3406001B39E3;
+					};
 					B379FA242A6F3406001B39E3 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -382,11 +453,19 @@
 			targets = (
 				B379FA242A6F3406001B39E3 /* GoTApp */,
 				B3C028482BD8032B0046B75E /* FavoritesWidgetExtension */,
+				B31375482BE2CA830050F72C /* GoTAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B31375472BE2CA830050F72C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B379FA232A6F3406001B39E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,6 +486,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B31375452BE2CA830050F72C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B313755B2BE2CFA80050F72C /* MockNetworkManager.swift in Sources */,
+				B31375522BE2CABB0050F72C /* NetworkManager.swift in Sources */,
+				B313755D2BE2D14E0050F72C /* Endpoint.swift in Sources */,
+				B313755C2BE2CFAE0050F72C /* MockService.swift in Sources */,
+				B31375542BE2CAD30050F72C /* NetworkError.swift in Sources */,
+				B313754C2BE2CA830050F72C /* GoTAppTests.swift in Sources */,
+				B31375532BE2CAC70050F72C /* HouseResponse.swift in Sources */,
+				B313755A2BE2CF9F0050F72C /* HomeScreenViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B379FA212A6F3406001B39E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,9 +520,11 @@
 				B3D699A32A78306800F71165 /* CharacterDetailViewModel.swift in Sources */,
 				B3D6999C2A75467900F71165 /* OverlordResponse.swift in Sources */,
 				B37ADB0B2A717D5F00AC8587 /* NetworkManager.swift in Sources */,
+				B31375592BE2CF660050F72C /* MockService.swift in Sources */,
 				B37ADAFE2A6F3CD000AC8587 /* HomeScreenViewModel.swift in Sources */,
 				B37ADB002A6F3D0700AC8587 /* HouseResponse.swift in Sources */,
 				B37ADAFC2A6F3C7B00AC8587 /* HomeScreen.swift in Sources */,
+				B31375572BE2CF510050F72C /* MockNetworkManager.swift in Sources */,
 				B3C028442BD7FC5C0046B75E /* HouseCell.swift in Sources */,
 				B37ADB142A73040300AC8587 /* DetailScreenViewModel.swift in Sources */,
 			);
@@ -438,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B313755E2BE2D14F0050F72C /* Endpoint.swift in Sources */,
 				B3C028532BD8032C0046B75E /* FavoritesWidgetLiveActivity.swift in Sources */,
 				B31375432BD80EC20050F72C /* FavoritesManager.swift in Sources */,
 				B3C028572BD8032C0046B75E /* AppIntent.swift in Sources */,
@@ -450,6 +547,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B313754E2BE2CA830050F72C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B379FA242A6F3406001B39E3 /* GoTApp */;
+			targetProxy = B313754D2BE2CA830050F72C /* PBXContainerItemProxy */;
+		};
 		B3C0285C2BD8032E0046B75E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B3C028482BD8032B0046B75E /* FavoritesWidgetExtension */;
@@ -458,6 +560,53 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B313754F2BE2CA830050F72C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3VFN5926F6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.senakurtak.GoTAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoTApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoTApp";
+			};
+			name = Debug;
+		};
+		B31375502BE2CA830050F72C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3VFN5926F6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.senakurtak.GoTAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoTApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoTApp";
+			};
+			name = Release;
+		};
 		B379FA312A6F3407001B39E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -702,6 +851,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B31375512BE2CA830050F72C /* Build configuration list for PBXNativeTarget "GoTAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B313754F2BE2CA830050F72C /* Debug */,
+				B31375502BE2CA830050F72C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B379FA202A6F3406001B39E3 /* Build configuration list for PBXProject "GoTApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

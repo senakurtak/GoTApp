@@ -15,12 +15,12 @@ protocol HomeScreenViewModelProtocol {
 
 final class HomeScreenViewModel: ObservableObject, HomeScreenViewModelProtocol {
     
-    private var networkManager: NetworkManager
+    private var networkManager: NetworkManagerProtocol
     
     @Published var houses: [HouseResponse] = []
     @Published var selectedHouse: HouseResponse? = nil
     
-    init(networkManager: NetworkManager = NetworkManager()) {
+    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
         self.networkManager = networkManager
     }
     
